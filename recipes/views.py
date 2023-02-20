@@ -13,4 +13,5 @@ def home(request):
 def recipes(request, id):
     return render(request, 'recipes/pages/recipes-view.html', context={
         'recipe': make_recipe(),
+        'is_detail_page': True,
     })
