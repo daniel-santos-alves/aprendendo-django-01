@@ -3,7 +3,11 @@ from django.db import models
 
 
 class Category(models.Model):
-    nema = models.CharField(max_length=65)
+    # erro de digitação
+    name = models.CharField(max_length=65)
+
+    def __str__(self):
+        return self.name
 
 
 class Recipe(models.Model):
