@@ -29,7 +29,11 @@ def category(request, category_id):
 
 
 def recipes(request, id):
-    recipe = Recipe.objects.get(id=id)
+    recipe = Recipe.objects.filter(
+        pk=id,
+        is_published=True,
+    ).order_by('-id').first()
+
     return render(request, 'recipes/pages/recipes-view.html', context={
         'recipe': recipe,
         'is_detail_page': True,
