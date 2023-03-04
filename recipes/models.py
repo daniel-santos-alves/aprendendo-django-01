@@ -3,7 +3,6 @@ from django.db import models
 
 
 class Category(models.Model):
-    # erro de digitação
     name = models.CharField(max_length=65)
 
     def __str__(self):
