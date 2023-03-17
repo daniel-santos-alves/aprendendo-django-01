@@ -1,8 +1,11 @@
+import os
 
 from django.urls import reverse
 
 from recipes.tests.test_recipe_base import RecipeTestBase
 from utils.pagination import make_pagination_range
+
+PER_PAGE = int(os.environ.get('PER_PAGE', 6))
 
 
 class paginationTest(RecipeTestBase):
@@ -160,7 +163,7 @@ class paginationTest(RecipeTestBase):
         response = self.client.get(f'{url}?page={1}')
         qty_recipes = len(response.context['recipes'])
 
-        self.assertEqual(qty_recipes, 12)
+        self.assertEqual(qty_recipes, PER_PAGE)
 
     def test_make_pagination_home_qty_recipes_is_12_with_title(self):
         title1 = 'This is recipe one'
