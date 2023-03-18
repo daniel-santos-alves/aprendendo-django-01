@@ -109,60 +109,13 @@ class paginationTest(RecipeTestBase):
         self.assertEqual([17, 18, 19, 20], pagination)
 
     def test_make_pagination_home_qty_recipes_is_12(self):
-
-        recipe1 = self.make_recipe(  # noqa: F841
-            slug='one', title='This is recipe one',
-            author_data={'username': 'one'},
-        )
-        recipe2 = self.make_recipe(  # noqa: F841
-            slug='two', title='This is recipe two',
-            author_data={'username': 'two'},
-        )
-        recipe3 = self.make_recipe(  # noqa: F841
-            slug='three', title='This is recipe three',
-            author_data={'username': 'three'},
-        )
-        recipe4 = self.make_recipe(  # noqa: F841
-            slug='four', title='This is recipe four',
-            author_data={'username': 'four'},
-        )
-        recipe5 = self.make_recipe(  # noqa: F841
-            slug='five', title='This is recipe five',
-            author_data={'username': 'five'},
-        )
-        recipe6 = self.make_recipe(  # noqa: F841
-            slug='six', title='This is recipe six',
-            author_data={'username': 'six'},
-        )
-        recipe7 = self.make_recipe(  # noqa: F841
-            slug='seven', title='This is recipe seven',
-            author_data={'username': 'seven'},
-        )
-        recipe8 = self.make_recipe(  # noqa: F841
-            slug='eight', title='This is recipe eight',
-            author_data={'username': 'eight'},
-        )
-        recipe9 = self.make_recipe(  # noqa: F841
-            slug='nine', title='This is recipe nine',
-            author_data={'username': 'nine'},
-        )
-        recipe10 = self.make_recipe(  # noqa: F841
-            slug='ten', title='This is recipe ten',
-            author_data={'username': 'ten'},
-        )
-        recipe11 = self.make_recipe(  # noqa: F841
-            slug='eleven', title='This is recipe eleven',
-            author_data={'username': 'eleven'},
-        )
-        recipe12 = self.make_recipe(  # noqa: F841
-            slug='twelve', title='This is recipe twelve',
-            author_data={'username': 'twelve'},
-        )
+        for i in range(12):
+            kwarg = {'slug': f'r{i}', 'author_data': {'username': f'u{i}'}}
+            self.make_recipe(**kwarg)
 
         url = reverse('recipes:home')
         response = self.client.get(f'{url}?page={1}')
         qty_recipes = len(response.context['recipes'])
-
         self.assertEqual(qty_recipes, PER_PAGE)
 
     def test_make_pagination_home_qty_recipes_is_12_with_title(self):
