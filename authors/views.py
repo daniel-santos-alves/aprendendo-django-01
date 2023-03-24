@@ -18,6 +18,6 @@ def register_create(request):
 
     POST = request.POST
     request.session['register_form_data'] = POST
-    form = RegisterForm(POST)
+    form = RegisterForm(POST)     # noqa: F841
 
     return redirect('authors:register')
