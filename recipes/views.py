@@ -42,7 +42,7 @@ def category(request, category_id):
 
 
 def recipes(request, id):
-    recipe = get_object_or_404(Recipe, pk=id, is_published=True,)
+    recipe = get_object_or_404(Recipe, pk=id, is_published=True)
 
     return render(request, 'recipes/pages/recipes-view.html', context={
         'recipe': recipe,
