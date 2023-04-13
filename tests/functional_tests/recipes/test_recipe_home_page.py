@@ -36,10 +36,11 @@ class RecipeHomePageFunctionalTest(RecipeBaseFunctionalTest):
         )
 
         # Clica neste input e digita o termo de busca
-        # "Recipe title 1" para encontrar a receita com esse título
+        # para encontrar a receita com o título desejado
         search_input.send_keys(title_needed)
         search_input.send_keys(Keys.ENTER)
 
+        # O usuário vê o que estava procurando na página
         self.assertIn(
             title_needed,
             self.browser.find_element(By.CLASS_NAME, 'main-content-list').text,
