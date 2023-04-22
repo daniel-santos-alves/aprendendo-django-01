@@ -81,3 +81,27 @@ class AuthorsRegisterTest(AuthorsBaseTest):
             self.assertIn("Password and password2 must be equal", form.text)
 
         self.form_field_test_with_callback(callback)
+
+    def test_user_valid_data_register_successfully(self):
+        self.browser.get(self.live_server_url + "/authors/register/")
+        form = self.get_form()
+
+        self.get_by_placeholder(form, "Ex.: John").send_keys("First Name")
+        self.get_by_placeholder(form, "Ex.: Doe").send_keys("Last Name")
+        self.get_by_placeholder(form, "Your username").send_keys("my_username")
+        self.get_by_placeholder(form, "Your e-mail").send_keys(
+            "email@valid.com"
+        )  # noqa E501
+        self.get_by_placeholder(form, "Type your password").send_keys(
+            "P@ssw0rd1"
+        )  # noqa E501
+        self.get_by_placeholder(form, "Repeat your password").send_keys(
+            "P@ssw0rd1"
+        )  # noqa E501
+
+        form.submit()
+
+        self.assertIn(
+            "Your user is created, please log in.",
+            self.browser.find_element(By.TAG_NAME, "body").text,
+        )
