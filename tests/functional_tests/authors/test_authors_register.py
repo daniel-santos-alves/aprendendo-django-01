@@ -69,3 +69,15 @@ class AuthorsRegisterTest(AuthorsBaseTest):
             self.assertIn("The e-mail must be valid.", form.text)
 
         self.form_field_test_with_callback(callback)
+
+    def test_passwords_do_not_match(self):
+        def callback(form):
+            password1 = self.get_by_placeholder(form, "Type your password")
+            password2 = self.get_by_placeholder(form, "Repeat your password")
+            password1.send_keys("P@ssw0rd")
+            password2.send_keys("P@ssw0rd_Different")
+            password2.send_keys(Keys.ENTER)
+            form = self.get_form()
+            self.assertIn("Password and password2 must be equal", form.text)
+
+        self.form_field_test_with_callback(callback)
