@@ -70,6 +70,15 @@ h6 {
     font-family: var(--font-headings);
 }
 
+img {
+    max-width: 100%;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
 .container {
     max-width: 144rem;
     margin: 0 auto;
@@ -334,7 +343,9 @@ list-style-type: none;
     color: var(--color-error-dark);
 }
 
-.form-content input {
+.form-content input,
+.form-content textarea,
+.form-content select  {
     width: 100%;
     padding: 1rem;
     border-radius: .4rem;
@@ -356,6 +367,10 @@ list-style-type: none;
 
 .inline-form {
     display: inline;
+}
+
+.span-2 {
+    grid-column: span 2;
 }
 
 .plaintext-button {
@@ -434,6 +449,10 @@ list-style-type: none;
 
 .center {
     text-align: center;
+}
+
+.left {
+    text-align: left;
 }
 
 .m-x {
